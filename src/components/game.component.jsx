@@ -2,7 +2,7 @@ import React from 'react';
 import calculateWinner from './calculateWinner.component';
 import Board from './board.component';
 import Header from './header.component';
-import { Button, Container, ButtonGroup } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
 // Component -3: Render a board with placeholder values
 /*
 This is the parent component which holds the states of the game for the 
@@ -59,7 +59,7 @@ class Game extends React.Component {
 
       // This is the return function for the game info time travel buttons 
       return (
-        <Button key={move} onClick={() => this.jumpTo(move)}>
+        <Button style={{ margin: '5px' }} block color='success' key={move} onClick={() => this.jumpTo(move)}>
           {desc}
         </Button>
       );
@@ -79,19 +79,19 @@ class Game extends React.Component {
       <div>
         <Header />
         <Container>
-          <div className="game">
-            <div className="game-board">
+          <Row>
+            <Col>
               <Board
                 squares={current.squares}
                 onClick={(i) => this.handleClick(i)} />
-            </div>
-            <div className="game-info">
-              <div>
+            </Col>
+            <Col>
+              <Row xs="2">
                 <h2>{status}</h2>
-              </div>
-              <ol>{moves}</ol>
-            </div>
-          </div>
+                <Col>{moves}</Col>
+              </Row>
+            </Col>
+          </Row>
         </Container>
       </div>
     );
