@@ -14,7 +14,7 @@ const Header = (props) => {
             <Col>
               <p>This game has a unique feature of time travel, player can revert to the previous steps and then change its move, if the matrox is completely filled and nobody wins, then it is considered as draw</p>
               <p className="lead">
-                <Button color="primary">Learn More</Button>
+                <a href='https://en.wikipedia.org/wiki/Tic-tac-toe' className='btn btn-primary' role='button' >Learn More</a>
               </p>
             </Col>
           </Row>
