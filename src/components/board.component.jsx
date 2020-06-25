@@ -1,5 +1,6 @@
 import React from 'react';
 import Square from './square.component';
+import { ButtonGroup } from 'reactstrap';
 
 // Component -2: This renders 9 squares
 const Board = (props) => {
@@ -11,21 +12,21 @@ const Board = (props) => {
 
   return (
     <div>
-      <div className="board-row">
+      <ButtonGroup>
         {renderSquare(0)}
         {renderSquare(1)}
         {renderSquare(2)}
-      </div>
-      <div className="board-row">
+      </ButtonGroup>
+      <ButtonGroup >
         {renderSquare(3)}
         {renderSquare(4)}
         {renderSquare(5)}
-      </div>
-      <div className="board-row">
+      </ButtonGroup>
+      <ButtonGroup>
         {renderSquare(6)}
         {renderSquare(7)}
         {renderSquare(8)}
-      </div>
+      </ButtonGroup>
     </div>
   );
 };

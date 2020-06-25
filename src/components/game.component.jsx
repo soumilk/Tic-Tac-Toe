@@ -3,6 +3,8 @@ import calculateWinner from './calculateWinner.component';
 import Board from './board.component';
 import Header from './header.component';
 import { Button, Container, Row, Col } from 'reactstrap';
+import PlayerNames from './players.component';
+
 // Component -3: Render a board with placeholder values
 /*
 This is the parent component which holds the states of the game for the 
@@ -16,8 +18,18 @@ class Game extends React.Component {
         squares: Array(9).fill(null),
       }],
       xIsNext: true,
-      stepNumber: 0
+      stepNumber: 0,
+      playerX: 'X',
+      playerO: 'O'
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
   }
 
   handleClick(i) {
@@ -29,7 +41,7 @@ class Game extends React.Component {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
-    console.log("Squares array in handleclick", squares);
+    //console.log("Squares array in handleclick", squares);
     this.setState({
       history: history.concat([{
         squares: squares
@@ -48,7 +60,6 @@ class Game extends React.Component {
   }
 
   render() {
-
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
@@ -64,21 +75,24 @@ class Game extends React.Component {
         </Button>
       );
     });
-
+    //console.log(this.state.playerO, this.state.playerX);
     let status;
     if (winner) {
-      status = 'Winner is : ' + winner;
+      if (winner === 'O')
+        status = 'Winner is : ' + this.state.playerO;
+      else
+        status = 'Winner is : ' + this.state.playerX;
     }
     else if (this.state.history.length === 10 && !winner) {
-      status = 'The match is draw';
+      status = 'This match is draw';
     }
     else {
-      status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next Player: ' + (this.state.xIsNext ? this.state.playerX : this.state.playerO);
     }
     return (
       <div>
         <Header />
-        <Container>
+        <Container style={{ paddingBottom: '25px' }}>
           <Row>
             <Col>
               <Board
@@ -86,8 +100,9 @@ class Game extends React.Component {
                 onClick={(i) => this.handleClick(i)} />
             </Col>
             <Col>
+              <h3 style={{ marginBottom: '20px', PaddingLeft: '0px' }}>{status}</h3>
               <Row xs="2">
-                <h2>{status}</h2>
+                <PlayerNames playerX={this.state.playerX} playerO={this.state.playerO} handleChange={this.handleChange} />
                 <Col>{moves}</Col>
               </Row>
             </Col>

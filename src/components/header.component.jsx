@@ -4,7 +4,7 @@ import { Jumbotron, Container, Row, Col } from 'reactstrap';
 const Header = (props) => {
   return (
     <div>
-      <Jumbotron fluid style={{ height: '300px', paddingTop: '30px' }}>
+      <Jumbotron fluid >
         <Container>
           <h1 className="display-3">Tic Tac Toe !</h1>
           <Row>

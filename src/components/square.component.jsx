@@ -5,9 +5,9 @@ import { Button } from 'reactstrap';
 const Square = (props) => {
   return (
     <Button outline color='warning' style={{
-      height: '100px',
+      height: '10vw',
       padding: '0',
-      width: '100px',
+      width: '10vw',
       border: '1px solid black',
       fontWeight: 'bold',
       fontSize: '3vw',
