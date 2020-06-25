@@ -1,7 +1,8 @@
 import React from 'react';
 import calculateWinner from './calculateWinner.component';
 import Board from './board.component';
-
+import Header from './header.component';
+import { Button, Container, ButtonGroup } from 'reactstrap';
 // Component -3: Render a board with placeholder values
 /*
 This is the parent component which holds the states of the game for the 
@@ -47,6 +48,7 @@ class Game extends React.Component {
   }
 
   render() {
+
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
@@ -55,11 +57,11 @@ class Game extends React.Component {
         'Go to move #' + move :
         'Go to Game start';
 
-      // This is the returb function for the game info time travel buttons 
+      // This is the return function for the game info time travel buttons 
       return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
-        </li>
+        <Button key={move} onClick={() => this.jumpTo(move)}>
+          {desc}
+        </Button>
       );
     });
 
@@ -74,16 +76,23 @@ class Game extends React.Component {
       status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)} />
-        </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
-        </div>
+      <div>
+        <Header />
+        <Container>
+          <div className="game">
+            <div className="game-board">
+              <Board
+                squares={current.squares}
+                onClick={(i) => this.handleClick(i)} />
+            </div>
+            <div className="game-info">
+              <div>
+                <h2>{status}</h2>
+              </div>
+              <ol>{moves}</ol>
+            </div>
+          </div>
+        </Container>
       </div>
     );
   }
