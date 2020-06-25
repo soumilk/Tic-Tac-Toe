@@ -94,12 +94,12 @@ class Game extends React.Component {
         <Header />
         <Container style={{ paddingBottom: '25px' }}>
           <Row>
-            <Col>
+            <Col sm="12" md={{ size: 6 }}>
               <Board
                 squares={current.squares}
                 onClick={(i) => this.handleClick(i)} />
             </Col>
-            <Col>
+            <Col sm="12" md={{ size: 6 }}>
               <h3 style={{ marginBottom: '20px', PaddingLeft: '0px' }}>{status}</h3>
               <Row xs="2">
                 <PlayerNames playerX={this.state.playerX} playerO={this.state.playerO} handleChange={this.handleChange} />

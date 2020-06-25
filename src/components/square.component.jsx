@@ -4,14 +4,13 @@ import { Button } from 'reactstrap';
 // Component -1: This component renders a single button
 const Square = (props) => {
   return (
-    <Button outline color='warning' style={{
-      height: '10vw',
+    <Button color='white' style={{
+      height: '3em',
       padding: '0',
-      width: '10vw',
-      border: '1px solid black',
+      width: '3em',
+      border: '1px solid black ',
       fontWeight: 'bold',
-      fontSize: '3vw',
-      color: 'black'
+      fontSize: '2vw',
     }}
       className="square"
       onClick={() => props.onClick()}>

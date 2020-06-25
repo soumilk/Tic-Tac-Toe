@@ -11,8 +11,8 @@ const Board = (props) => {
   }
 
   return (
-    <div>
-      <ButtonGroup>
+    <div >
+      <ButtonGroup >
         {renderSquare(0)}
         {renderSquare(1)}
         {renderSquare(2)}
@@ -22,12 +22,12 @@ const Board = (props) => {
         {renderSquare(4)}
         {renderSquare(5)}
       </ButtonGroup>
-      <ButtonGroup>
+      <ButtonGroup >
         {renderSquare(6)}
         {renderSquare(7)}
         {renderSquare(8)}
       </ButtonGroup>
-    </div>
+    </div >
   );
 };
 
