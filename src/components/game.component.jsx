@@ -2,7 +2,7 @@ import React from 'react';
 import calculateWinner from './calculateWinner.component';
 import Board from './board.component';
 import Header from './header.component';
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Button, Container, Row, Col, Label } from 'reactstrap';
 import PlayerNames from './players.component';
 
 // Component -3: Render a board with placeholder values
@@ -94,15 +94,17 @@ class Game extends React.Component {
         <Header />
         <Container style={{ paddingBottom: '25px' }}>
           <Row>
-            <Col sm="12" md={{ size: 6 }}>
+            <Col xs={{ size: 6, offset: 3 }} md={{ size: 6, offset: 0 }}>
               <Board
                 squares={current.squares}
                 onClick={(i) => this.handleClick(i)} />
             </Col>
-            <Col sm="12" md={{ size: 6 }}>
-              <h3 style={{ marginBottom: '20px', PaddingLeft: '0px' }}>{status}</h3>
-              <Row xs="2">
-                <PlayerNames playerX={this.state.playerX} playerO={this.state.playerO} handleChange={this.handleChange} />
+            <Col xs="12" md="6" >
+              <h3 style={{ marginBottom: '20px' }}>{status}</h3>
+              <Row>
+                <Col>
+                  <PlayerNames playerX={this.state.playerX} playerO={this.state.playerO} handleChange={this.handleChange} />
+                </Col>
                 <Col>{moves}</Col>
               </Row>
             </Col>
