@@ -17,7 +17,7 @@ const calculateWinner = (squares) => {
       return (squares[a]);
     }
   }
-  return null;
+  return undefined;
 };
 
 export default calculateWinner;

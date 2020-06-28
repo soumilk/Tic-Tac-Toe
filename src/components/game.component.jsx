@@ -2,9 +2,10 @@ import React from 'react';
 import calculateWinner from './calculateWinner.component';
 import Board from './board.component';
 import Header from './header.component';
-import { Button, Container, Row, Col, Label } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
 import PlayerNames from './players.component';
-
+import ScoreBoard from './scoreboard.component';
+import WinnerOfGame from './winner.component';
 // Component -3: Render a board with placeholder values
 /*
 This is the parent component which holds the states of the game for the 
@@ -20,7 +21,9 @@ class Game extends React.Component {
       xIsNext: true,
       stepNumber: 0,
       playerX: 'X',
-      playerO: 'O'
+      playerO: 'O',
+      winCountX: 0,
+      winCountO: 0
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -30,6 +33,21 @@ class Game extends React.Component {
     this.setState({
       [name]: value
     });
+  }
+
+  scoring(winner) {
+    if (winner === 'O') {
+      this.setState({
+        winCountO: this.state.winCountO + 1
+      })
+    }
+    else if (winner === 'X') {
+      this.setState({
+        winCountX: this.state.winCountX + 1
+      })
+    }
+    else
+      return;
   }
 
   handleClick(i) {
@@ -62,51 +80,44 @@ class Game extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
+    let winner = calculateWinner(current.squares);
+    console.log('from calfun:', winner);
     const moves = history.map((step, move) => {
       const desc = move ?
         'Go to move #' + move :
         'Go to Game start';
 
-      // This is the return function for the game info time travel buttons 
       return (
         <Button style={{ margin: '5px' }} block color='success' key={move} onClick={() => this.jumpTo(move)}>
           {desc}
         </Button>
       );
     });
-    //console.log(this.state.playerO, this.state.playerX);
-    let status;
-    if (winner) {
-      if (winner === 'O')
-        status = 'Winner is : ' + this.state.playerO;
-      else
-        status = 'Winner is : ' + this.state.playerX;
-    }
-    else if (this.state.history.length === 10 && !winner) {
-      status = 'This match is draw';
-    }
-    else {
-      status = 'Next Player: ' + (this.state.xIsNext ? this.state.playerX : this.state.playerO);
-    }
+
     return (
       <div>
         <Header />
         <Container style={{ paddingBottom: '25px' }}>
           <Row>
-            <Col xs={{ size: 6, offset: 3 }} md={{ size: 6, offset: 0 }}>
+            <Col xs="12" md="6" style={{ marginBottom: '20px' }}>
+              <h3 style={{ marginBottom: '20px' }}><WinnerOfGame {...this.state} /></h3>
+              <Row>
+                <Col>
+                  <h5>Enter the Player Names: </h5>
+                  <PlayerNames playerX={this.state.playerX} playerO={this.state.playerO} handleChange={this.handleChange} />
+
+                  <ScoreBoard scoring={this.scoring} winner={winner} winCountX={this.state.winCountX} winCountO={this.state.winCountO} />
+                </Col>
+                <Col>
+                  <h5 align='center' style={{ marginTop: '7px' }}>Here are the Time travel options</h5>
+                  {moves}
+                </Col>
+              </Row>
+            </Col>
+            <Col align='center' xs={{ size: 6, offset: 3 }} md={{ size: 6, offset: 0 }}>
               <Board
                 squares={current.squares}
                 onClick={(i) => this.handleClick(i)} />
-            </Col>
-            <Col xs="12" md="6" >
-              <h3 style={{ marginBottom: '20px' }}>{status}</h3>
-              <Row>
-                <Col>
-                  <PlayerNames playerX={this.state.playerX} playerO={this.state.playerO} handleChange={this.handleChange} />
-                </Col>
-                <Col>{moves}</Col>
-              </Row>
             </Col>
           </Row>
         </Container>
