@@ -1,7 +1,7 @@
 import calculateWinner from './calculateWinner.component';
+import React from 'react';
 
-
-const WinnerOfGame = ({ ...otherGameProps }) => {
+const WinnerOfGame = ({ scoring, ...otherGameProps }) => {
 
   const history = otherGameProps.history;
   const current = history[otherGameProps.stepNumber];
@@ -21,7 +21,11 @@ const WinnerOfGame = ({ ...otherGameProps }) => {
   else {
     status = 'Next Player: ' + (otherGameProps.xIsNext ? otherGameProps.playerX : otherGameProps.playerO);
   }
-  return status;
+  return (
+    <div align='center'>
+      {status}
+    </div>
+  )
 };
 
 export default WinnerOfGame;

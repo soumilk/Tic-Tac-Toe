@@ -1,21 +1,18 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 
-const ScoreBoard = ({ scoring, winner, winCountX, winCountO }) => {
-  if (winner !== undefined) {
-    console.log('winner :', winner);
-    //scoring(winner);
-  }
+const ScoreBoard = ({ playerX, playerO, winCountX, winCountO }) => {
+
   return (
     <div>
       <h5 style={{ marginTop: '15px' }}>Score Board: </h5>
-      <Row align='center'>
+      <Row >
         <Col>
-          <p>PlayerX:</p>
+          <p>X: {playerX}</p>
           {winCountX}
         </Col>
         <Col>
-          <p>PlayerO:</p>
+          <p>O: {playerO}</p>
           {winCountO}
         </Col>
       </Row>

@@ -6,11 +6,7 @@ import { Button, Container, Row, Col } from 'reactstrap';
 import PlayerNames from './players.component';
 import ScoreBoard from './scoreboard.component';
 import WinnerOfGame from './winner.component';
-// Component -3: Render a board with placeholder values
-/*
-This is the parent component which holds the states of the game for the 
-time travel as well as the player turn
-*/
+
 class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -26,6 +22,7 @@ class Game extends React.Component {
       winCountO: 0
     };
     this.handleChange = this.handleChange.bind(this);
+    this.scoring = this.scoring.bind(this);
   }
 
   handleChange(e) {
@@ -46,8 +43,6 @@ class Game extends React.Component {
         winCountX: this.state.winCountX + 1
       })
     }
-    else
-      return;
   }
 
   handleClick(i) {
@@ -70,7 +65,6 @@ class Game extends React.Component {
   }
 
   jumpTo(step) {
-    console.log("Jumped to move number ", step);
     this.setState({
       stepNumber: step,
       xIsNext: (step % 2) === 0,
@@ -80,8 +74,7 @@ class Game extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    let winner = calculateWinner(current.squares);
-    console.log('from calfun:', winner);
+
     const moves = history.map((step, move) => {
       const desc = move ?
         'Go to move #' + move :
@@ -100,13 +93,15 @@ class Game extends React.Component {
         <Container style={{ paddingBottom: '25px' }}>
           <Row>
             <Col xs="12" md="6" style={{ marginBottom: '20px' }}>
-              <h3 style={{ marginBottom: '20px' }}><WinnerOfGame {...this.state} /></h3>
+              <h3 style={{ marginBottom: '25px' }}>
+                <WinnerOfGame scoring={this.scoring} {...this.state} />
+              </h3>
               <Row>
                 <Col>
                   <h5>Enter the Player Names: </h5>
                   <PlayerNames playerX={this.state.playerX} playerO={this.state.playerO} handleChange={this.handleChange} />
 
-                  <ScoreBoard scoring={this.scoring} winner={winner} winCountX={this.state.winCountX} winCountO={this.state.winCountO} />
+                  <ScoreBoard playerX={this.state.playerX} playerO={this.state.playerO} winCountX={this.state.winCountX} winCountO={this.state.winCountO} />
                 </Col>
                 <Col>
                   <h5 align='center' style={{ marginTop: '7px' }}>Here are the Time travel options</h5>
