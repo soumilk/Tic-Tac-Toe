@@ -35,14 +35,22 @@ class Game extends React.Component {
   scoring(winner) {
     if (winner === 'O') {
       this.setState({
-        winCountO: this.state.winCountO + 1
+        winCountO: this.state.winCountO + 1,
+        xIsNext: true,
       })
     }
     else if (winner === 'X') {
       this.setState({
-        winCountX: this.state.winCountX + 1
+        winCountX: this.state.winCountX + 1,
+        xIsNext: false,
       })
     }
+    this.setState({
+      history: [{
+        squares: Array(9).fill(null),
+      }],
+      stepNumber: 0
+    })
   }
 
   handleClick(i) {
@@ -50,11 +58,15 @@ class Game extends React.Component {
       this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (calculateWinner(squares)) {
+      this.scoring(calculateWinner(squares));
       return;
     }
+    if (squares[i]) {
+      return;
+    }
+
     squares[i] = this.state.xIsNext ? 'X' : 'O';
-    //console.log("Squares array in handleclick", squares);
     this.setState({
       history: history.concat([{
         squares: squares

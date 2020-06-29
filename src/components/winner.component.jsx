@@ -21,6 +21,7 @@ const WinnerOfGame = ({ scoring, ...otherGameProps }) => {
   else {
     status = 'Next Player: ' + (otherGameProps.xIsNext ? otherGameProps.playerX : otherGameProps.playerO);
   }
+
   return (
     <div align='center'>
       {status}
