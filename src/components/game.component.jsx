@@ -115,7 +115,7 @@ class Game extends React.Component {
 
                   <ScoreBoard playerX={this.state.playerX} playerO={this.state.playerO} winCountX={this.state.winCountX} winCountO={this.state.winCountO} />
                 </Col>
-                <Col>
+                <Col style={{ maxHeight: "300px", overflowY: 'auto' }}>
                   <h5 align='center' style={{ marginTop: '7px' }}>Here are the Time travel options</h5>
                   {moves}
                 </Col>

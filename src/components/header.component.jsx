@@ -6,7 +6,7 @@ const Header = (props) => {
     <div>
       <Jumbotron fluid >
         <Container>
-          <h1 className="display-3">Tic Tac Toe !</h1>
+          <h1 className="display-4">Tic Tac Toe !</h1>
           <Row>
             <Col>
               <p className="lead">This is a simple game in which there is a 3X3 matrix and players fill it with 'X' or 'O', now as soon as any one symbol alligns along a row, column or diagonal, the player with that symbol wins</p>
