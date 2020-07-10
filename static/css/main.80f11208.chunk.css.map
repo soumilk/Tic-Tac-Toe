@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAGA,QACE,UAAW,CACX,YAAa,CACb,SAAU,CACV,yBAA4B,CAC5B,oBACF","file":"main.80f11208.chunk.css","sourcesContent":["body {\r\n  \r\n}\r\n.square {\r\n  height: 7em;\r\n  padding: 10px;\r\n  width: 7em;\r\n  font-weight: bold !important;\r\n  color: black !important;\r\n}\r\n"]}
