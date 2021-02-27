@@ -1,6 +1,6 @@
 ## Tic Tac Toe 
 
-This is a really simple and fun game to play. This project is the implementation of this game using `ReactJs` and Bootstrap4 library for react 0i.e. `reactstrap`. Visit [this](https://reactstrap.github.io/) link to know more about Reactstrap.
+This is a really simple and fun game to play. This project is the implementation of this game using `ReactJs` and Bootstrap4 library for react i.e. `reactstrap`. Visit [this](https://reactstrap.github.io/) link to know more about Reactstrap.
 <br>
 Live demo of the project: <strong>[Tic Tac Toe](https://soumilk.github.io/Tic-Tac-Toe/)</strong>.
 ### To run this project
